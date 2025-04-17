@@ -1,43 +1,26 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../../config/redux";
+// src/features/auth/authSlice.ts
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-// Define a type for the slice state
-export interface CounterState {
-  uid: string;
-  userData: {} | null;
-  loading: boolean;
-  error:boolean
-}
-
-// Define the initial state using that type
-const initialState: CounterState = {
-  uid: "",
-  userData:null,
-  loading:true,
-  error:false
+type AuthState = {
+  user: string | null;
 };
 
-export const authSlice = createSlice({
-  name: "auth",
-  // `createSlice` will infer the state type from the `initialState` argument
+const initialState: AuthState = {
+  user: null,
+};
+
+const authSlice = createSlice({
+  name: 'auth',
   initialState,
   reducers: {
-    logIn: (state) => {
-      state.value += 1;
+    login: (state, action: PayloadAction<string>) => {
+      state.user = action.payload;
     },
-    checkAuth: (state) => {
-      state.value -= 1;
-    },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    logOut: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    logout: (state) => {
+      state.user = null;
     },
   },
 });
 
-export const { logIn, logOut, checkAuth } = counterSlice.actions;
-
-// Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.counter.value;
-
-export default counterSlice.reducer;
+export const { login, logout } = authSlice.actions;
+export default authSlice.reducer;

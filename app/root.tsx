@@ -1,14 +1,16 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+// import { hydrateRoot } from "react-dom/client";
 import type { Route } from "./+types/root";
 import "./app.css";
+import { registerGsapPlugins } from "src/config/gsapConfig";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -42,7 +44,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  registerGsapPlugins()
+  return (
+    <>
+      <Outlet />
+      <footer className="fixed bottom-10 right-10 p-2 bg-sky-500 rounded-md md:p-3 lg:p-4">
+        <h1>Contact Us</h1>
+      </footer>
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
@@ -63,8 +73,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   return (
     <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
+      <h1 className="text-red-500 text-xl">{message}</h1>
       <p>{details}</p>
+      <Link to={"/"}>
+        <h1 className="text-neutral-100 text-lg text-sky-300 underline my-3">Go back to home</h1>
+      </Link>
       {stack && (
         <pre className="w-full p-4 overflow-x-auto">
           <code>{stack}</code>

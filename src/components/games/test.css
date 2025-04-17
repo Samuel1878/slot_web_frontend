@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #16A085;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F4D03F, #16A085);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F4D03F, #16A085);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+html,
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+}
+
+svg,
+ul,
+li,
+.container {
+    position: absolute;
+}
+
+.stage {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+    justify-content: center;
+}
+
+.results,
+.button-area {
+
+    padding: 20px 0;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.results {
+    margin-top: 0;
+}
+
+.button-area {
+    margin-bottom: 0;
+}
+
+button {
+    text-align: center;
+    display: inline-block;
+    top: 25px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    padding: 10px 27px;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+button:hover,
+button:focus-visible {
+    background: white;
+    color: #16a085;
+    border-color: #16a085;
+}
+
+.ring,
+.item,
+.console-outer {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    user-select: none;
+}
+
+.row.console {
+    flex: 1 1 auto;
+    display: flex;
+    max-height: 520px;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.console-outer {
+    max-height: 460px;
+    min-height: 130px;
+    flex: 1 1 auto;
+    box-shadow: 0 5px 20px 0px #07352b80;
+    display: flex;
+    flex-direction: row;
+    max-width: 465px;
+    margin: auto;
+    margin-bottom: 20px;
+    gap: 2px;
+    border: 15px solid black;
+    border-left: none;
+    border-right: none;
+    border-radius: 15px;
+}
+
+
+.col.wheel {
+    background: black;
+    padding: 0 40px;
+    max-height: 430px;
+    min-height: 130px;
+    height: 100%;
+    overflow: hidden;
+    margin: auto;
+    flex: 0 0 calc(33.333333333% - 2px);
+    max-width: calc(33.333333333% - 2px);
+    position: relative;
+
+}
+
+.console-outer:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 1) 100%);
+    content: " ";
+}
+
+.container {
+    perspective: 2000px;
+    width: 100px;
+    height: 130px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
+
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    vertical-align: center;
+    margin: auto;
+    border: 1px solid white;
+    border-radius: 5px;
+    backface-visibility: hidden;
+    background: white;
+    opacity: 0.8;
+
+}
+
+.item span {
+    font-size: 2.5em;
+    margin: auto;
+}
+
+.item.active {
+    box-shadow: inset 0px 0 10px 0px #ecd820b0;
+    opacity: 1;
+}
+
+.results {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.results div {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+
+.stage.notstarted .active {
+    box-shadow: none;
+}
+
+.holdcontrols {
+    max-width: 465px;
+    width: 100%;
+    display: flex;
+    margin: auto;
+    margin-top: 0;
+}
+
+.holdcontrols .col {
+    padding: 10px 0;
+    padding-top: 0;
+    text-align: center;
+    flex: 0 0 calc(33.333333333% - 2px);
+    max-width: calc(33.333333333% - 2px);
+}
+
+.holdcontrols button {
+    font-size: 1em;
+    padding: 5px 25px;
+}
+
+.holdcontrols button.held {
+    background: #16a085;
+    color: white;
+    border-color: #16a085;
+}
