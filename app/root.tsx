@@ -11,6 +11,19 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { registerGsapPlugins } from "src/config/gsapConfig";
+import { CustomerService } from "src/components/floatingBtns";
+import ReactDOM from "react-dom";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter, faFontAwesome } from "@fortawesome/free-brands-svg-icons";
+
+
+library.add(
+  fas,
+  faTwitter,
+  faFontAwesome,
+);
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -48,9 +61,7 @@ export default function App() {
   return (
     <>
       <Outlet />
-      <footer className="fixed bottom-10 right-10 p-2 bg-sky-500 rounded-md md:p-3 lg:p-4">
-        <h1>Contact Us</h1>
-      </footer>
+     
     </>
   );
 }

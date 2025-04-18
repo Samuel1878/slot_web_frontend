@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import { navMenu } from "../../data";
 const NavMenu = ({toggle}) => {
     return (
-      <ul className="flex-col flex fixed left-0 right-0 top-10 bg-neutral-950">
+      <ul className="flex-col flex fixed left-0 right-0 top-10 bg-neutral-900">
         {
             navMenu?.map((e,i)=>{
                 return (
@@ -26,7 +26,7 @@ export default function NavBarLayout () {
        console.log(window.innerWidth)
     },[])
     return (
-      <header className="fixed top-0 right-0 left-0 bg-neutral-950 z-10 min-h-10">
+      <header className="fixed top-0 right-0 left-0 bg-neutral-900 z-10 min-h-10">
         <nav className="container max-w-8xl px-4 relative">
           <div className="flex justify-between items-center relative">
             <a
@@ -38,15 +38,19 @@ export default function NavBarLayout () {
                 Casino
               </span>
             </a>
-        
-            <button className="md:hidden lg:hidden flex">
-              <Hamburger
-                toggled={isOpen}
-                toggle={setIsOpen}
-                color="#fff"
-                size={20}
-              />
-            </button>
+            <div className="flex-row flex gap-2 items-center">
+                <button className="items-center justify-center h-6 px-4 bg-amber-300 rounded-sm">
+                    <p className="text-neutral-900 text-sm">Login</p>
+                </button>
+              <button className="md:hidden lg:hidden flex">
+                <Hamburger
+                  toggled={isOpen}
+                  toggle={setIsOpen}
+                  color="#fff"
+                  size={20}
+                />
+              </button>
+            </div>
 
             <ul className="flex-row items-center space-x-4 hidden md:flex lg:flex">
               {navMenu?.map((e, i) => {
@@ -59,7 +63,7 @@ export default function NavBarLayout () {
                 );
               })}
             </ul>
-      
+
             {isOpen && <NavMenu toggle={toggleMenu} />}
           </div>
         </nav>

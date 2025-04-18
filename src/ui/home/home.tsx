@@ -1,10 +1,13 @@
 const HomeScreen = () => {
     return (
-      <div className="bg-neutral-900 flex flex-col items-center justify-center h-screen p-10 md:p-30 lg:p-40 ">
+      <div className="bg-neutral-900 flex flex-col h-screen p-2 md:p-6 lg:p-8 ">
+        <section className="image-slider-container mt-12 relative w-full h-100 bg-neutral-950 rounded-xl overflow-hidden">
 
-          <p className="text-2xl text-white-600 font-bold underline p-10 c-199">
-           home
-          </p>
+        </section>
+        <article className="p-3 w-full">
+            <h1 className="text-sm font-bold text-neutral-100">Announcements</h1>
+        </article>
+         
       </div>
     );
 };
