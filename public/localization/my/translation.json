@@ -1,0 +1,19 @@
+{
+  "title": "ကြိုဆိုပါတယ်",
+  "home": "မူလစာမျက်နှာ",
+  "about": "အကြောင်းအရာ",
+  "language": "ဘာသာစကား",
+    "_home": {
+    
+  },
+  "_auth":{
+    "login":"၀င်ပါ",
+    "signup":"Sign Up",
+    "phone":"Phone",
+    "password":"Password",
+    "enter_name":"Please enter your name",
+    "enter_password":"Please enter your password",
+    "confirm":"Confirm"
+  }
+
+}

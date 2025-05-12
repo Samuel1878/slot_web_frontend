@@ -14,9 +14,11 @@ import { registerGsapPlugins } from "src/config/gsapConfig";
 import { CustomerService } from "src/components/floatingBtns";
 import ReactDOM from "react-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-
+import "src/config/i18nConfig";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter, faFontAwesome } from "@fortawesome/free-brands-svg-icons";
+import { AuthProvider } from "src/context/authContext";
+
 
 
 library.add(
@@ -43,7 +45,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
         <Meta />
         <Links />
       </head>
@@ -60,8 +65,9 @@ export default function App() {
   registerGsapPlugins()
   return (
     <>
-      <Outlet />
-     
+      <AuthProvider>
+        <Outlet />
+      </AuthProvider>
     </>
   );
 }

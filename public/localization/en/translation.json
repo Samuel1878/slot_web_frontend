@@ -1,0 +1,23 @@
+{
+  "title": "xXx",
+  "home": "Home",
+  "about": "About Us",
+  "language": "Language",
+
+  "_home": {
+    
+  },
+  "_auth":{
+    "login":"Log In",
+    "signup":"Sign Up",
+    "phone":"Phone",
+    "password":"Password",
+    "enter_name":"Please enter your name",
+    "enter_password":"Please enter your password",
+    "confirm":"Confirm"
+  }
+
+  
+
+
+}

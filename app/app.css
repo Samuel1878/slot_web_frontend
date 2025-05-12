@@ -1,15 +1,64 @@
 @import "tailwindcss";
 
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --color-main-100: "rgb(231,187,65)";
 }
 
 html,
 body {
+  width: 100dvw;
+  overflow-x: hidden;
+  user-select: none;
   @apply bg-white dark:bg-gray-950;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
 }
+
+canvas {
+  touch-action: none;
+}
+.screen-max-width {
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  position: relative;
+  max-width: 1120px;
+
+}
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+  @utility flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .common-padding {
+    @apply sm:p-10 p-5
+  }
+  .input_icon {
+    @apply absolute left-3 top-3
+  }
+  
+  .control-btn {
+    @apply ml-2 p-3 rounded-full backdrop-blur flex-center
+  }
+  .video-carousel_container {
+    @apply relative sm:w-[80vw] w-[90vw] md:h-[70vh] sm:h-[60vh] h-[50vh] lg:h-[50vh]
+  }
+
+  @media (orientation: landscape) {
+      #game-container {
+        display: block;
+        /* or show a rotate screen message */
+    }
+  }

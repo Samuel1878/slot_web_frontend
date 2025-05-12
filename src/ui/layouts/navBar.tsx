@@ -1,72 +1,128 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Hamburger from "hamburger-react";
 import { Link } from "react-router";
-import { navMenu } from "../../data";
-const NavMenu = ({toggle}) => {
-    return (
-      <ul className="flex-col flex fixed left-0 right-0 top-10 bg-neutral-900">
-        {
-            navMenu?.map((e,i)=>{
-                return (
-                  <Link key={e.value} onClick={toggle} to={`/${e.value}`}>
-                    <li className="py-5 w-full flex items-center justify-center hover:border-gray-500">
-                      <a className="text-gray-300 text-lg">{e.label}</a>
-                    </li>
-                  </Link>
-                );
-            })
+import { navMenu } from "../../const/index";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useTranslation } from "react-i18next";
+import { useAuth } from "src/context/authContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LanguageChangeBtn from "src/components/buttons/languageBtn";
+
+export default function NavBarLayout() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const {setShowAuthModal} = useAuth();
+  const { t, i18n } = useTranslation();
+  const menuRef = useRef();
+  const toggleMenu = () => setIsOpen((prev) => !prev);
+  useEffect(() => {
+    if (!menuRef.current) return
+    if (isOpen) {
+      gsap.to(menuRef.current, {
+        duration: .7,
+        translateY: 20,
+        ease:"power2.out",
+        opacity: 1,
+        display: "flex",
+      });
+    } else {
+      gsap.to(menuRef.current, {
+        duration: .4,
+        translateY: -2,
+        opacity: 0,
+        ease:"power2.in",
+        onComplete: () => {
+          if (menuRef.current){
+            menuRef.current.style.display = "none"
+          }
         }
-      </ul>
-    );
-}
-export default function NavBarLayout () {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const toggleMenu = () => setIsOpen((prev)=>!prev);
-    useEffect(()=>{
-       console.log(window.innerWidth)
-    },[])
-    return (
-      <header className="fixed top-0 right-0 left-0 bg-neutral-900 z-10 min-h-10">
-        <nav className="container max-w-8xl px-4 relative">
-          <div className="flex justify-between items-center relative">
-            <a
-              href="/"
-              className="text-sky-300 text-xl italic hover:text-white transition-colors"
-            >
-              111.111
-              <span className="mx-3 text-neutral-400 font-bold text-sl hover:text-netural-100 transition-colors">
-                Casino
-              </span>
-            </a>
-            <div className="flex-row flex gap-2 items-center">
-                <button className="items-center justify-center h-6 px-4 bg-amber-300 rounded-sm">
-                    <p className="text-neutral-900 text-sm">Login</p>
-                </button>
-              <button className="md:hidden lg:hidden flex">
-                <Hamburger
-                  toggled={isOpen}
-                  toggle={setIsOpen}
-                  color="#fff"
-                  size={20}
-                />
-              </button>
-            </div>
+      });
+    }
+  }, [isOpen]);
+  const resizeHandler = () => {
+    if (window.innerWidth > 1024) {
+      setIsOpen(false);
+    }
+  }
+  useEffect(()=>{
+    window.addEventListener("resize", resizeHandler);
+    return () => window.removeEventListener("resize", resizeHandler);
+  })
+  return (
+    <header className="top-0 right-0 left-0 bg-neutral-900 z-10 min-h-15 flex w-full">
+      <nav className="flex w-full justify-between items-center relative px-2 md:px-4 lg:px-6">
+        <Link
+          href="/"
+          onClick={() => setIsOpen(false)}
+          className="text-amber-500 text-2xl italic hover:text-white transition-colors ml-4"
+        >
+          xXx
+          <span className="mx-3 text-neutral-400 font-sans text-lg hover:text-netural-100 transition-colors">
+            Casino
+          </span>
+        </Link>
 
-            <ul className="flex-row items-center space-x-4 hidden md:flex lg:flex">
-              {navMenu?.map((e, i) => {
-                return (
-                  <Link key={i} to={`/${e.value}`}>
-                    <li className="p-5 hover:border-b-white">
-                      <a className="text-gray-100">{e.label}</a>
-                    </li>
-                  </Link>
-                );
-              })}
-            </ul>
+        <ul className="flex-row items-center space-x-3 hidden lg:flex">
+          {navMenu?.map((e, i) => {
+            return (
+              <Link key={i} to={`/${e.value}`}>
+                <li className="p-5 hover:border-b-white">
+                  <a className="text-gray-100">{e.label}</a>
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
 
-            {isOpen && <NavMenu toggle={toggleMenu} />}
+        <div className="flex flex-row gap-2 items-center">
+          <button
+            onClick={() => setShowAuthModal(true)}
+            className="items-center justify-center h-8 px-4 bg-amber-500 rounded-sm z-10"
+          >
+            <p className="text-neutral-900  text-sm font-sans z-10">
+              {t("_auth.login")}
+            </p>
+          </button>
+          <button className="hidden lg:flex pl-2">
+            <FontAwesomeIcon icon="fa-solid fa-globe" size="20px" color="#f9f9f9"/>
+          </button>
+
+          <div className="flex-row flex gap-2 items-center lg:hidden">
+            <Hamburger
+              toggled={isOpen}
+              toggle={setIsOpen}
+              color="#fff"
+              size={22}
+            />
           </div>
-        </nav>
-      </header>
-    );
-};
+        </div>
+
+        <ul
+          id="toggleNav"
+          ref={menuRef}
+          className="z-10 pb-5 pt-2 hidden h-dvh flex-col absolute left-0 right-0 top-10 bg-neutral-900 opacity-0"
+        >
+       
+          {navMenu?.map((e, i) => {
+            return (
+              <Link
+                key={e.value}
+                onClick={toggleMenu}
+                to={`/${e.value}`}
+              >
+                <li className="py-5 px-7 w-full flex items-center hover:bg-neutral-800">
+                  <div className="flex gap-4 items-center">
+                    {e?.icon}
+                    <a className="text-gray-300 text-md">{e.label}</a>
+                  </div>
+                  
+                </li>
+              </Link>
+            );
+          })}
+          <LanguageChangeBtn t={t} i18n={i18n}/>
+        </ul>
+      </nav>
+    </header>
+  );
+}

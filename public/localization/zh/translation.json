@@ -1,0 +1,18 @@
+{
+  "title": "欢迎",
+  "home": "首页",
+  "about": "关于我们",
+  "language": "语言",
+    "_home": {
+    
+  },
+  "_auth":{
+    "login":"Login",
+    "signup":"Sign Up",
+    "phone":"Phone",
+    "password":"Password",
+    "enter_name":"Please enter your name",
+    "enter_password":"Please enter your password",
+    "confirm":"Confirm"
+  }
+}
