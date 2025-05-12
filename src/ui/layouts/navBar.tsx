@@ -14,7 +14,24 @@ export default function NavBarLayout() {
   const {setShowAuthModal} = useAuth();
   const { t, i18n } = useTranslation();
   const menuRef = useRef();
+  const navRef = useRef([]);
   const toggleMenu = () => setIsOpen((prev) => !prev);
+  // useEffect(()=>{
+ 
+  //   if (isOpen){
+  //     if(navRef.current?.length)return
+  //     navRef.current?.map((e)=>{
+  //       gsap.to(e, {
+  //         duration: 1,
+  //          translateX: 5,
+  //         delay: 0.5,
+  //         ease: "power1.out",
+  //         opacity: 1,
+  //       });
+  //     });
+    
+  //   }
+  // },[isOpen])
   useEffect(() => {
     if (!menuRef.current) return
     if (isOpen) {
@@ -25,6 +42,7 @@ export default function NavBarLayout() {
         opacity: 1,
         display: "flex",
       });
+     
     } else {
       gsap.to(menuRef.current, {
         duration: .4,
@@ -105,17 +123,15 @@ export default function NavBarLayout() {
        
           {navMenu?.map((e, i) => {
             return (
-              <Link
-                key={e.value}
-                onClick={toggleMenu}
-                to={`/${e.value}`}
-              >
-                <li className="py-5 px-7 w-full flex items-center hover:bg-neutral-800">
+              <Link key={e.value} onClick={toggleMenu} to={`/${e.value}`}>
+                <li
+                  // ref={(el) => (navRef.current[i] = el)}
+                  className="py-5 z-30 px-7 w-full flex items-center hover:bg-neutral-800"
+                >
                   <div className="flex gap-4 items-center">
                     {e?.icon}
                     <a className="text-gray-300 text-md">{e.label}</a>
                   </div>
-                  
                 </li>
               </Link>
             );
