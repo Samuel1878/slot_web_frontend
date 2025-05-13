@@ -4,7 +4,7 @@ import { languageData } from "src/const";
 
 const LanguageChangeBtn = ( { t, i18n }) => {
     return (
-      <div className="flex flex-row items-center justify-between pl-15 pr-5">
+      <div className="flex w-full flex-row items-center justify-between pl-15 pr-5">
         <p className="text-gray-300 text-md">
           {/* <span className="mr-4">
             <FontAwesomeIcon icon="fa-solid fa-globe" color="#a3a3a3"/>

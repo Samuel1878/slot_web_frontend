@@ -30,7 +30,7 @@ export default function GameScreen() {
     }
   return (
     <>
-      <main className="flex h-screen flex-col">
+      <main className="flex h-screen flex-col bg-neutral-900">
         <div className="items-center justify-center max-h-55 sm:max-h-60 md:min-h-80 lg:max-h-100  p-4 md:p-6 lg:p-8 lg:px-12">
           <ImageSlider />
         </div>

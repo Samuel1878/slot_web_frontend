@@ -20,7 +20,7 @@ export const VideoCarousel = () => {
     const [loadedData, setLoadedData] = useState([]);
     const {isEnd , isLastVideo, startPlay, videoId, isPlaying} = video;
     useGSAP(() => {
-        console.log("EFFECT 1")
+     
         gsap.to("#slider", {
             transform: `translateX(${-100 * videoId}%)`,
             duration:2,
@@ -45,7 +45,6 @@ export const VideoCarousel = () => {
 
     useEffect(() => {
         
-          console.log("EFFECT 2");
         let currentProgress = 0 ;
         let span = videoSpanRef.current;
 
@@ -105,7 +104,6 @@ export const VideoCarousel = () => {
     },[videoId, startPlay]);
     
     useEffect(()=>{
-        console.log("EFFECT 3")
         if (loadedData.length > 3){
             if (!videoRef.current[videoId]) return;
             if(!isPlaying){
@@ -145,86 +143,85 @@ export const VideoCarousel = () => {
                 return video;
         }
     }
-    return(
-    <>
+    return (
+      <>
         <section className="flex items-center">
-            {
-                hightlightsSlides?.map((list, i)=>(
-                    <div key={list.id} id="slider" className="pr-10 sm:pr-20">
-                        <div className="video-carousel_container">
-                            <div className="w-full h-full flex-center rounded-3xl overflow-hidden bg-neutral-900">
-                                <video
-                                    id="video"
-                                    playsInline={true}
-                                    style={{pointerEvents:"none"}}
-                                    // className={`${ list.id ===2 && "translate-x-44"} pointer-events-none`}
-                                    preload="auto"
-                                    // style={{width:"100%", height:"100%"}}
-                                    muted
-                                    ref={(el)=>(videoRef.current[i] = el)}
-                                    onEnded={() => {
-                                        i !== 3
-                                          ? handleProcess("video-end", i)
-                                          : handleProcess("video-last");
-                                        i === 3 && setTimeout(()=>{
-                                            handleProcess("video-reset")
-                                        },5000)
-
-                                    }}
-                                    onPlay={()=>setVideo((prev)=>({...prev, isPlaying:true}))}
-                                    onLoadedMetadata={(e)=> handleLoadedMetaData(i, e)}
-                                    >
-                                        <source src={list.video} type="video/mp4"/>
-                                </video>
-                            </div>
-                            
-                            <div className="absolute top-8 left-[5%] z-10">
-                                {list.textLists?.map((text, i)=> (
-                                    <p key={i} className="sm:text-sm md:text-xl text-md font-medium">
-                                        {text}
-                                    </p>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                ))
-            }
-
-        </section>
-        <div className="relative flex-center mt-2">
-            <div className="flex-center gap-1 py-3 px-4 backdrop-blur rounded-full bg-neutral-900">
-                {
-                    videoRef.current.map((_,i)=>(
-                        <span
-                            key={i}
-                            className="w-3 h-3 bg-neutral-300 rounded-full relative cursor-pointer"
-                            ref={(el)=>(videoDivRef.current[i] = el)}>
-                                <span 
-                                    ref={(el)=> (videoSpanRef.current[i] = el)}
-                                    className="absolute h-full w-full rounded-full">
-
-                                </span>
-                        </span> 
-                    ))
-                }
-            </div>
-            <button className="control-btn bg-neutral-900">
-                <img
-                    className="w-3 h-3"
-                    src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
-                    alt={isLastVideo? "replay": !isPlaying? "play" : "pause"}
-                    onClick={isLastVideo 
-                        ? ()=> handleProcess("video-reset")
-                        : !isPlaying
-                        ? () => handleProcess("play")
-                        : () => handleProcess("pause")
+          {hightlightsSlides?.map((list, i) => (
+            <div key={list.id} id="slider" className="pr-12 sm:pr-20">
+              <div className="relative w-[90dvw] md:w-[80dvw] lg:w-[70dvw] h-50 md:h-90 sm:h-80 lg:h-120 ">
+                <div className="w-full h-full flex-center rounded-3xl overflow-hidden bg-neutral-900">
+                  <video
+                    id="video"
+                    playsInline={true}
+                    style={{ pointerEvents: "none" }}
+                    className="object-cover"
+                    preload="auto"
+                    style={{ width: "100%", height: "100%" }}
+                    muted
+                    ref={(el) => (videoRef.current[i] = el)}
+                    onEnded={() => {
+                      i !== 3
+                        ? handleProcess("video-end", i)
+                        : handleProcess("video-last");
+                      i === 3 &&
+                        setTimeout(() => {
+                          handleProcess("video-reset");
+                        }, 5000);
+                    }}
+                    onPlay={() =>
+                      setVideo((prev) => ({ ...prev, isPlaying: true }))
                     }
-                    />
-            </button>
-        </div>
-        <section className="">
-            
+                    onLoadedMetadata={(e) => handleLoadedMetaData(i, e)}
+                  >
+                    <source src={list.video} type="video/mp4" />
+                  </video>
+                </div>
+
+                <div className="absolute top-4 left-[5%] z-10">
+                  {list.textLists?.map((text, i) => (
+                    <p
+                      key={i}
+                      className="sm:text-sm md:text-xl text-md text-amber-100 font-medium"
+                    >
+                      {text}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
         </section>
-    </>
-    )
+        <div className="relative flex-center mt-4">
+          <div className="flex-center gap-1 py-3 px-4 backdrop-blur rounded-full bg-neutral-900">
+            {videoRef.current.map((_, i) => (
+              <span
+                key={i}
+                className="w-3 h-3 bg-neutral-300 rounded-full relative cursor-pointer"
+                ref={(el) => (videoDivRef.current[i] = el)}
+              >
+                <span
+                  ref={(el) => (videoSpanRef.current[i] = el)}
+                  className="absolute h-full w-full rounded-full"
+                ></span>
+              </span>
+            ))}
+          </div>
+          <button className="control-btn bg-neutral-900">
+            <img
+              className="w-3 h-3"
+              src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
+              alt={isLastVideo ? "replay" : !isPlaying ? "play" : "pause"}
+              onClick={
+                isLastVideo
+                  ? () => handleProcess("video-reset")
+                  : !isPlaying
+                  ? () => handleProcess("play")
+                  : () => handleProcess("pause")
+              }
+            />
+          </button>
+        </div>
+        <section className=""></section>
+      </>
+    );
 }

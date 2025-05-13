@@ -1,5 +1,44 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { banner1, banner2, banner3, banner4, banner5, highlightFirstVideo, highlightFourthVideo, highlightSecondVideo, highlightThirdVideo, zeroFiveImg, zeroFourImg, zeroOneImg, zeroSevenImg, zeroSixImg, zeroThreeImg, zeroTwoImg } from "src/utils";
+import { banner1, banner2, banner3, banner4, banner5, facebook, highlightFirstVideo, highlightFourthVideo, highlightSecondVideo, highlightThirdVideo, instagram, messenger, telegram, tiktok, twitter, viber, whatsapp, youtube, zeroFiveImg, zeroFourImg, zeroOneImg, zeroSevenImg, zeroSixImg, zeroThreeImg, zeroTwoImg } from "src/utils";
+
+export const contacts = [
+  {
+    name: "telegram",
+    icon: telegram,
+  },
+  {
+    name: "viber",
+    icon: viber,
+  },
+  {
+    name: "tiktok",
+    icon: tiktok,
+  },
+  {
+    name: "x",
+    icon: twitter,
+  },
+  {
+    name: "youtube",
+    icon: youtube,
+  },
+  {
+    name: "instagram",
+    icon: instagram,
+  },
+  {
+    name: "facebook",
+    icon: facebook,
+  },
+  {
+    name: "messenger",
+    icon: messenger,
+  },
+  {
+    name: "whatsapp",
+    icon: whatsapp,
+  }
+];
 export const services = [
   {
     label:"Games",
@@ -151,3 +190,31 @@ export const languageData = [
     value: "zh",
   },
 ];
+
+export const topGainers = [
+  {
+    id:"N600301",
+    name:"John Doe",
+    amount:93906350
+  },
+    {
+    id:"N602091",
+    name:"David Lee",
+    amount:650651100
+  },
+    {
+    id:"N601903",
+    name:"Cherry Bergan",
+    amount:12960050
+  },
+    {
+    id:"N601892",
+    name:"Van essa Mccall",
+    amount:7950900
+  },
+    {
+    id:"N604771",
+    name:"Eliash J. Michael",
+    amount:953800
+  }
+]

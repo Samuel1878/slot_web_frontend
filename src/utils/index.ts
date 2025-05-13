@@ -23,8 +23,22 @@ import banner1 from "public/icons/banner_vip.png";
 import authSm from "public/assets/authsm.jpg";
 import authLg from "public/assets/authlg.jpg";
 
-import authLottie from "public/lotties/auth.json"
+import authLottie from "public/lotties/auth.json";
 
+import youtube from "public/icons/youtube.png";
+import instagram from "public/icons/instagram.png";
+import tiktok from "public/icons/tiktok.png";
+import facebook from "public/icons/facebook.png";
+import twitter from "public/icons/x.png";
+import telegram from "public/icons/telegram.png";
+import whatsapp from "public/icons/whatsapp.png";
+import messenger from "public/icons/messenger.png";
+import viber from "public/icons/viber.png";
+ 
+import mobileScreen from "public/assets/mobileScreen.svg";
+import googlePlay from "public/icons/google.png";
+import applePlay from "public/icons/apple.png";
+export { googlePlay , applePlay}
 export const highlightFirstVideo = highlightFirstmv;
 export const highlightSecondVideo = highlightSectmv;
 export const highlightThirdVideo = highlightThirdmv;
@@ -42,6 +56,8 @@ export const zeroSevenImg = zeroSeven;
 export {authLg, authSm};
 
 export const authLottie_1 = authLottie;
+export const mobileScreenSvg = mobileScreen;
 export {banner1, banner2 ,banner3 , banner4 , banner5};
+export {youtube, instagram, tiktok, facebook, twitter, telegram, whatsapp, messenger, viber}
 
 

@@ -67,20 +67,20 @@ export default function NavBarLayout() {
     return () => window.removeEventListener("resize", resizeHandler);
   })
   return (
-    <header className="top-0 right-0 left-0 bg-neutral-900 z-10 min-h-15 flex w-full">
-      <nav className="flex w-full justify-between items-center relative px-2 md:px-4 lg:px-6">
+    <header className="top-0 right-0 left-0 bg-neutral-800 lg:bg-neutral-900 z-10 min-h-16 flex w-full">
+      <nav className="flex w-full justify-between items-center relative px-2 md:px-4 lg:px-12">
         <Link
           href="/"
           onClick={() => setIsOpen(false)}
-          className="text-amber-500 text-2xl italic hover:text-white transition-colors ml-4"
+          className="text-amber-300 font-mono text-2xl tracking-widest hover:text-white transition-colors ml-4"
         >
-          xXx
-          <span className="mx-3 text-neutral-400 font-sans text-lg hover:text-netural-100 transition-colors">
-            Casino
+          XVIP.
+          <span className=" text-neutral-400 font-sans text-sm hover:text-netural-100 transition-colors">
+            VAULT
           </span>
         </Link>
 
-        <ul className="flex-row items-center space-x-3 hidden lg:flex">
+        <ul className="flex-row items-center space-x-3 hidden lg:flex italic">
           {navMenu?.map((e, i) => {
             return (
               <Link key={i} to={`/${e.value}`}>
@@ -95,14 +95,18 @@ export default function NavBarLayout() {
         <div className="flex flex-row gap-2 items-center">
           <button
             onClick={() => setShowAuthModal(true)}
-            className="items-center justify-center h-8 px-4 bg-amber-500 rounded-sm z-10"
+            className="items-center justify-center h-8 px-4 bg-amber-300 rounded-sm z-10"
           >
             <p className="text-neutral-900  text-sm font-sans z-10">
               {t("_auth.login")}
             </p>
           </button>
           <button className="hidden lg:flex pl-2">
-            <FontAwesomeIcon icon="fa-solid fa-globe" size="20px" color="#f9f9f9"/>
+            <FontAwesomeIcon
+              icon="fa-solid fa-globe"
+              size="20px"
+              color="#f9f9f9"
+            />
           </button>
 
           <div className="flex-row flex gap-2 items-center lg:hidden">
@@ -118,15 +122,14 @@ export default function NavBarLayout() {
         <ul
           id="toggleNav"
           ref={menuRef}
-          className="z-10 pb-5 pt-2 hidden h-dvh flex-col absolute left-0 right-0 top-10 bg-neutral-900 opacity-0"
+          className="z-10 pb-5 pt-2 hidden h-dvh flex-col absolute left-0 right-0 top-10 bg-neutral-800 opacity-0"
         >
-       
           {navMenu?.map((e, i) => {
             return (
               <Link key={e.value} onClick={toggleMenu} to={`/${e.value}`}>
                 <li
                   // ref={(el) => (navRef.current[i] = el)}
-                  className="py-5 z-30 px-7 w-full flex items-center hover:bg-neutral-800"
+                  className="py-5 z-30 px-7 w-full flex items-center bg-neutral-800 transition-colors hover:bg-neutral-900"
                 >
                   <div className="flex gap-4 items-center">
                     {e?.icon}
@@ -136,7 +139,7 @@ export default function NavBarLayout() {
               </Link>
             );
           })}
-          <LanguageChangeBtn t={t} i18n={i18n}/>
+          <LanguageChangeBtn t={t} i18n={i18n} />
         </ul>
       </nav>
     </header>

@@ -1,11 +1,18 @@
 @import "tailwindcss";
 
-
+/* 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --color-main-100: "rgb(231,187,65)";
+  
+} */
+@theme {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
 }
 
 html,
@@ -13,11 +20,12 @@ body {
   width: 100dvw;
   overflow-x: hidden;
   user-select: none;
-  @apply bg-white dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+  
+  @apply bg-white dark:bg-neutral-800 ;
+  @media only screen and (max-width: 1024px) {
+      background-color: "#171717";
   }
+ 
 }
 
 canvas {
@@ -27,7 +35,7 @@ canvas {
   margin-inline-start: auto;
   margin-inline-end: auto;
   position: relative;
-  max-width: 1120px;
+  /* max-width: 1120px; */
 
 }
 /* * {
@@ -42,8 +50,8 @@ canvas {
     align-items: center;
   }
 
-  .common-padding {
-    @apply sm:p-10 p-5
+  .flex-center {
+    @apply flex justify-center items-center;
   }
   .input_icon {
     @apply absolute left-3 top-3
